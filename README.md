@@ -1,1 +1,1 @@
-# modelo-regressao-linear-com-api
+# Modelo de Regressão Linear com API (FastAPI)
