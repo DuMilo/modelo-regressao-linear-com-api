@@ -3,24 +3,24 @@ from fastapi import FastAPI
 import uvicorn
 import joblib
 
-# Criar uma instância do FastAPI
+# Criando uma instância do FastAPI
 app = FastAPI()
 
-# Criar uma classe que terá os dados do request body para a API
+# Criando uma classe que terá os dados do request body para a API
 class request_body(BaseModel):
   horas_estudo : float
 
-# Carregar modelo para realizar a predição
+# Carregando modelo para realizar a predição
 
-modelo_pontuacao = joblib.load('./modelo_regressao.pkl')
+modelo_pontuacao = joblib.load(r'.\models\trained_model.pkl')
 
 @app.post('/predict')
 def predict(data : request_body):
-  # Preparar os dados para predição
+  # Preparando os dados para predição
   input_feature = [[data.horas_estudo]]
 
-  # Realizar a predição
+  # Realizando a predição
   y_pred = modelo_pontuacao.predict(input_feature)[0].astype(int)
 
-  # Retornar a predição
+  # Retornando a predição
   return {'pontuacao_teste': y_pred.tolist()}
