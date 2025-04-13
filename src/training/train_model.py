@@ -17,4 +17,7 @@ def train_model():
         return None
 
 if __name__ == "__main__":
-    train_model() 
+    train_model()
+
+
+## Disclaimer: It was supposed to have a training model here, but I already did the training process on the .ipynb file, so I used this space to convert my file .pkl to .joblib
