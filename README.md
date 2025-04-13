@@ -48,7 +48,7 @@ http://127.0.0.1:8000/docs
 
 #
 
-## Tecnologias Usadas
+# Tecnologias Usadas
 
 * **Linguagem de Programação**: Python
 * **Bibliotecas**: Pandas, Matplotlib, Seaborn, Scikit-Learn, SciPy, Numpy, Statsmodels, Pingouin
