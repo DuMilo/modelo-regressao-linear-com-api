@@ -1,25 +1,20 @@
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
 import joblib
-import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from src.preprocessing.preprocess import preprocess_data
-
 def train_model():
-    raw_data_file = fr'data\raw\pontuacao_teste.csv'
-    processed_data_path = fr'data\processed'
-    X, y = preprocess_data(fr'{raw_data_file}', fr'{processed_data_path}')
+    model_file = "models/trained_model.pkl" 
+    model_path = "models"
+    model_joblib = rf"{model_path}/trained_model.joblib"
     
-    model = LinearRegression()
-    model.fit(X, y)
-    
-    predictions = model.predict(X)
-    mse = mean_squared_error(y, predictions)
-    print(f"MSE do modelo: {mse:.2f}")
-    
-    joblib.dump(model, rf"models/modelo_regressao.joblib")
-    
-    return model
+    try:
+        model = joblib.load(model_file)
+        print(f"✅ Modelo carregado de: {os.path.abspath(model_file)}")
+        joblib.dump(model, model_joblib)
+        print(f"✅ Modelo .joblib mandado para: {os.path.abspath(model_file)}")
+        return model
+    except Exception as e:
+        print(f"🚨 Erro ao carregar o modelo: {str(e)}")
+        return None
+
+if __name__ == "__main__":
+    train_model() 
